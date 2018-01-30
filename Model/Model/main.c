@@ -8,18 +8,25 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #define  F_CPU 1000000UL
+#include "stepper.h"
 int main(void)
 {
     /* Replace with your application code */
 	 //Initialize the stepper library
-	 StepperInit();
-		//stepAngle(20);
-
+	struct motor m1;
+	 
+	 m1.setPort('C',true);
 	 
     while (1) 
     {
-		myStep();
-		_delay_ms(1000);
+		m1.rotateCW();
+		_delay_ms(500);
+		m1.rotateCW();
+		_delay_ms(500);
+		m1.rotateACW();
+		_delay_ms(500);
+		m1.rotateACW();
+		_delay_ms(500);
 	}
 }
 

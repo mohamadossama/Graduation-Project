@@ -36,6 +36,7 @@ Don't connect port pins directly to coil,
 use a driver like ULN2003A etc.
 
 */
+/*
 #define STEPPER_POS		0
 #define _CONCAT(a,b) a##b
 #define PORT(x) _CONCAT(PORT,x)
@@ -49,7 +50,24 @@ void StepperInit();
 void StepperStepCW();
 void StepperStepCCW();
 void myStep();
-void stepAngle(uint8_t angle);
+void stepAngle(uint8_t angle);*/
+#define _CONCAT(a,b) a##b
+#define PORT(x) _CONCAT(PORT,x)
+#define PIN(x) _CONCAT(PIN,x)
+#define DDR(x) _CONCAT(DDR,x)
+#define true 1
+struct motor 
+{
+	
+		
+	public:
+		const unsigned uint8_t motor_steps[HALF_WAVE_STEPS] = {8,12,4,6,2,3,1,9};
+		unsigned char count = 0;
+		void setPort(char p,bool first); /* initiates output pins for the motor if first = true then first 4 pins else last 4 pins*/
+		void rotateCW(); /*rotates the motor 1 step in clockwise direction*/
+		void rotateACW(); /* rotates motor 1 step in anti clockwise direction */
+		
+};
 #endif
 
 
